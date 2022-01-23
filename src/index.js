@@ -1,12 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { SWRConfig } from 'swr';
+import { CookiesProvider } from 'react-cookie';
+
 import App from './App';
+import { fetcher } from './libs/utils/api';
 import reportWebVitals from './reportWebVitals';
+
+import { Helmet } from './components';
+
+import './assets/app.css';
+
+const Container = () => {
+  return (
+    <CookiesProvider>
+      <SWRConfig
+        value={{
+          refreshInterval: 0,
+          fetcher,
+        }}
+      >
+        <App />
+      </SWRConfig>
+    </CookiesProvider>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Helmet />
+    <Container />
   </React.StrictMode>,
   document.getElementById('root')
 );
