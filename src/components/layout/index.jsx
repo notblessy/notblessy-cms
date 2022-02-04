@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   GlobalOutlined,
   BulbOutlined,
@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { useAuth } from '../../libs/contexts/auth';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const menus = [
   { to: '/', icon: <GlobalOutlined />, text: 'Home' },
@@ -39,6 +39,7 @@ const LayoutDashboard = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
+        <div className="logo">NOTBLESSY ADMIN</div>
         <Menu
           theme="dark"
           defaultSelectedKeys={['/']}
@@ -78,14 +79,24 @@ const LayoutDashboard = () => {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ padding: 0 }} />
-        <Content style={{ margin: '0 16px' }}>
+        <Breadcrumb style={{ margin: '16px 0 0', padding: '16px 0 0 24px' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item>
+        </Breadcrumb>
+        <Content
+          className="site-layout-background"
+          style={{
+            margin: '16px 16px',
+            minHeight: 280,
+          }}
+        >
           <div style={{ padding: 24, minHeight: 360 }}>
             <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Vincere Digital ©{new Date().getFullYear()}
+          notblessy ©{new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>
