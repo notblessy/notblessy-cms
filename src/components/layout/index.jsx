@@ -79,11 +79,6 @@ const LayoutDashboard = () => {
         </Menu>
       </Sider>
       <Layout>
-        <Breadcrumb style={{ margin: '16px 0 0', padding: '16px 0 0 24px' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
         <Content
           className="site-layout-background"
           style={{

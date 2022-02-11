@@ -15,7 +15,7 @@ const cookies = new Cookies();
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = cookies.get('token');
+    const token = cookies.get('access_token');
     if (token) config.headers['Authorization'] = `Bearer ${token}`;
 
     return config;

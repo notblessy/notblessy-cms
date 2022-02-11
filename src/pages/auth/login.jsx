@@ -22,7 +22,7 @@ const Login = () => {
         <Title level={1} className="layout-auth-form-heading">
           Welcome to
           <br />
-          Vincere support
+          notblessy
         </Title>
         <Text className="layout-auth-form-description">
           Please enter your email address and password to login to your support

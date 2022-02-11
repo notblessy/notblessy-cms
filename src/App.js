@@ -14,37 +14,41 @@ import {
   LayoutDashboard,
 } from './components';
 
+import { AuthProvider } from './libs/contexts/auth';
+
 import Login from './pages/auth/login';
 import Home from './pages/home';
-import { UserList } from './pages/user';
+import Customers from './pages/customer';
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route element={<Protector />}>
-          <Route element={<LayoutDashboard />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/users" element={<UserList />} />
+      <AuthProvider>
+        <Routes>
+          <Route element={<Protector />}>
+            <Route element={<LayoutDashboard />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/users" element={<Customers />} />
+            </Route>
           </Route>
-        </Route>
-        <Route element={<GuestOnly />}>
-          <Route path="/login" element={<Login />} />
-        </Route>
+          <Route element={<GuestOnly />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
 
-        <Route
-          exact
-          path="/404"
-          element={
-            <Result
-              status="404"
-              title="404"
-              subTitle="Sorry, the page you visited does not exist."
-            />
-          }
-        />
-        <Route path="*" element={<Navigate to="/404" />} />
-      </Routes>
+          <Route
+            exact
+            path="/404"
+            element={
+              <Result
+                status="404"
+                title="404"
+                subTitle="Sorry, the page you visited does not exist."
+              />
+            }
+          />
+          <Route path="*" element={<Navigate to="/404" />} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
