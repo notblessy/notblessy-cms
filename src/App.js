@@ -19,6 +19,7 @@ import { AuthProvider } from './libs/contexts/auth';
 import Login from './pages/auth/login';
 import Home from './pages/home';
 import Customers from './pages/customer';
+import Categories from './pages/categories';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
             <Route element={<LayoutDashboard />}>
               <Route path="/" element={<Home />} />
               <Route path="/users" element={<Customers />} />
+              <Route path="/categories" element={<Categories />} />
             </Route>
           </Route>
           <Route element={<GuestOnly />}>

@@ -15,7 +15,8 @@ const { Content, Footer, Sider } = Layout;
 const menus = [
   { to: '/', icon: <GlobalOutlined />, text: 'Home' },
   { to: '/users', icon: <BulbOutlined />, text: 'Users' },
-  { to: '/billing', icon: <DollarOutlined />, text: 'Billing' },
+  { to: '/categories', icon: <DollarOutlined />, text: 'Categories' },
+  { to: '/shoes', icon: <DollarOutlined />, text: 'Shoes' },
   {
     to: '/settings',
     icon: <SettingOutlined />,

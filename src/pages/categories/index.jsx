@@ -4,19 +4,19 @@ import { format } from 'date-fns';
 
 import { DashboardContent } from '../../components';
 
-import { useCustomers } from '../../libs/hooks/customer';
+import { useCategories } from '../../libs/hooks/categories';
 
-const Customers = () => {
+const Categories = () => {
   const [form] = Form.useForm();
   const [isModalVisible, setModalVisibility] = useState(false);
   const {
-    data: customer,
+    data: categories,
     loading,
     onSearch,
     onChangePage,
     pagination,
     onCreate,
-  } = useCustomers();
+  } = useCategories();
 
   const handleOk = async () => {
     const values = await form.validateFields();
@@ -30,8 +30,8 @@ const Customers = () => {
       sorter: (a, b) => a.name - b.name,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
+      title: 'Description',
+      dataIndex: 'description',
       sorter: (a, b) => a.email - b.email,
     },
     {
@@ -86,7 +86,7 @@ const Customers = () => {
             type="primary"
             style={{ marginBottom: 16 }}
           >
-            Add Customer
+            Add Category
           </Button>
         </div>
         {loading ? <div>Loading...</div> : null}
@@ -110,31 +110,36 @@ const Customers = () => {
           >
             <Form name="basic" form={form}>
               <Form.Item
-                label="Email"
-                name="email"
+                label="Name"
+                name="name"
                 rules={[
-                  { required: true, message: 'Please input your email.' },
+                  { required: true, message: 'Please input category name.' },
                 ]}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
-                label="Name"
-                name="name"
-                rules={[{ required: true, message: 'Please input your name.' }]}
+                label="Description"
+                name="description"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input category description.',
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
-                label="Password"
-                name="password"
+                label="Picture"
+                name="picture"
                 rules={[
                   { required: true, message: 'Please input your password.' },
                 ]}
               >
-                <Input.Password />
+                <Input />
               </Form.Item>
             </Form>
           </Modal>
@@ -143,11 +148,11 @@ const Customers = () => {
       <Row>
         <Col md={18}>
           {loading ? 'Loading...' : null}
-          {customer ? (
+          {categories ? (
             <div>
               <Table
                 columns={columns}
-                dataSource={customer}
+                dataSource={categories}
                 pagination={{
                   current: pagination?.page || 1,
                   pageSize: pagination?.pageSize || 10,
@@ -163,4 +168,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default Categories;

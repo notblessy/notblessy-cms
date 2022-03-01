@@ -9,13 +9,13 @@ import config from '../../config';
 import api from '../utils/api';
 import toast from '../utils/toast';
 
-export const useCustomers = () => {
+export const useCategories = () => {
   const [query, setQuery] = useSearchParams();
   const [cookies] = useCookies([config.COOKIE_NAME]);
   const [loading, setLoading] = useState(false);
   console.log(cookies.access_token);
 
-  const pathKey = `/customers?pageSize=2&${query.toString()}`;
+  const pathKey = `/categories?pageSize=2&${query.toString()}`;
   const { data: res, error } = useSWR(() =>
     cookies.access_token ? pathKey : null
   );
@@ -31,7 +31,7 @@ export const useCustomers = () => {
   const onCreate = async (payload) => {
     setLoading(true);
     try {
-      const { data: res } = await api.post(`/customers`, payload);
+      const { data: res } = await api.post(`/categories`, payload);
       if (res.success) {
         mutate(pathKey);
         toast('success', 'Customer has been created succesfully.');
